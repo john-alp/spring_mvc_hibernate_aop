@@ -13,22 +13,24 @@
 </head>
 <body>
 <h2>Employee Info<h2>
+
 <%--<form:form action=""> spring, action срабатывает, когда нажимаем кнопку Ок  и дергает метод saveEmployee   --%>
-    <form:form action="saveEmployee" modelAttribute="employee">
+
+<form:form action="saveEmployee" modelAttribute="employee">
 
         <form:hidden path="id"/>
-
-        Name <form:input path="name"/>
+<%--use getter--%>
+        Name    <form:input path="name"/>
         <br><br>
         Surname <form:input path="surname"/>
         <br><br>
         Department <form:input path="department"/>
         <br><br>
-        Salary <form:input path="salary"/>
+        Salary  <form:input path="salary"/>
         <br><br>
-<%--         activ setter--%>
+<%-- use setter--%>
         <input type="submit" value="Ok"/>
+    </form:form>
 
 </body>
 </html>
-    </form:form>

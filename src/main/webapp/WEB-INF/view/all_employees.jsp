@@ -9,49 +9,58 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Spring Title</title>
+    <title>Spring Title</title>
 </head>
 <body>
 <h2>All Employees</h2>
 <table>
-  <%--    table row--%>
-  <tr>
-    <%--        table header--%>
-    <th>Name</th>
-    <th>Surname</th>
-    <th>Department</th>
-    <th>Salary</th>
-      <th>Operations</th>
-
-  </tr>
-
-  <c:forEach var="emp" items="${allEmps}">
-
-    <c:url var="updateButton" value="/updateInfo">
-    <c:param name="empId" value="${emp.id}" />
-    </c:url>
-
+    <%--    table row--%>
     <tr>
-<%--      td - table data--%>
-      <td>${emp.name}</td>
-      <td>${emp.surname}</td>
-      <td>${emp.department}</td>
-      <td>${emp.salary}</td>
-  <td>
-    <input type="button" value="Update"
-           onclick="window.location.href='${updateButton}'"/>
-  </td>
+        <%--        table header--%>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Operations</th>
+
     </tr>
 
-  </c:forEach>
+    <c:forEach var="emp" items="${allEmps}">
+
+        <c:url var="updateButton" value="/updateInfo">
+            <c:param name="empId" value="${emp.id}"/>
+        </c:url>
+        <%--link deleteButton--%>
+        <c:url var="deleteButton" value="/deleteEmployee">
+            <c:param name="empId" value="${emp.id}"/>
+        </c:url>
+
+        <tr>
+                <%--      td - table data--%>
+            <td>${emp.name}</td>
+            <td>${emp.surname}</td>
+            <td>${emp.department}</td>
+            <td>${emp.salary}</td>
+
+            <td>
+                    <%--  Добавляем кнопку Update--%>
+                <input type="button" value="Update"
+                       onclick="window.location.href='${updateButton}'"/>
+                <input type="button" value="Delete"
+                       onclick="window.location.href='${deleteButton}'"/>
+
+            </td>
+        </tr>
+
+    </c:forEach>
 
 </table>
- <br>
-
-  <%--  Добавляем кнопку--%>
-  <input type="button" value="Add"
-         onclick="window.location.href = 'addNewEmployee'"/>
 <br>
 
+<%--  Добавляем кнопку Add--%>
+<input type="button" value="Add"
+       onclick="window.location.href = 'addNewEmployee'"/>
+
+<br>
 </body>
 </html>

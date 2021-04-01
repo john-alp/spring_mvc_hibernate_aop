@@ -18,7 +18,8 @@ public class MyController {
     @Autowired // не понял, откуд бин взяли?
     private EmployeeService employeeService;
 
-    @RequestMapping("/")  // @RequestMapping используется для мапинга (связывания) с URL для всего класса или для конкретного метода обработчика.
+    @RequestMapping("/")
+    // @RequestMapping используется для мапинга (связывания) с URL для всего класса или для конкретного метода обработчика.
     public String showAllEmployees(Model model) {
 
         List<Employee> allEmployees = employeeService.getAllEmployees();
@@ -35,8 +36,10 @@ public class MyController {
 
         return "employee_info";
     }
+
     // button Ok save
-    @RequestMapping("/saveEmployee")  // @ModelAttribute ссылается на свойство объекта Model из view c уже заполненынми данными
+    @RequestMapping("/saveEmployee")
+    // @ModelAttribute ссылается на свойство объекта Model из view c уже заполненынми данными
     public String saveEmployee(@ModelAttribute("employee") Employee employee) {
 
         employeeService.saveEmployee(employee);
@@ -50,4 +53,11 @@ public class MyController {
         model.addAttribute("employee", employee);
         return "employee_info";
     }
+
+    @RequestMapping("/deleteEmployee")
+    public String deleteEmployee(@RequestParam("empId") int id) {
+        employeeService.deleteEmployee(id);
+        return "redirect:/";
+    }
+
 }
